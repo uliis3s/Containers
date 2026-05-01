@@ -1,0 +1,31 @@
+# ─── Environment files (real values — never commit) ──────────────────────────
+.env
+.env.local
+.env.production
+.env.staging
+.env.development
+
+# ─── Keys and certificates ────────────────────────────────────────────────────
+*.pem
+*.key
+
+# ─── Node ─────────────────────────────────────────────────────────────────────
+node_modules/
+dist/
+.turbo/
+
+# ─── Next.js ──────────────────────────────────────────────────────────────────
+.next/
+out/
+
+# ─── Prisma ───────────────────────────────────────────────────────────────────
+packages/database/prisma/generated/
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# ─── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
