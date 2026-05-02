@@ -12,6 +12,8 @@ const envSchema = z.object({
   R2_PUBLIC_ENDPOINT: z.string().url(),
   API_PORT: z.coerce.number().int().positive().default(3001),
   API_HOST: z.string().default('0.0.0.0'),
+  WEB_URL: z.string().url(),
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
 })
 
 const parsed = envSchema.safeParse(process.env)
@@ -28,9 +30,11 @@ if (!parsed.success) {
 const env = parsed.data
 
 export const config = {
+  isDev: env.NODE_ENV !== 'production',
   api: {
     port: env.API_PORT,
     host: env.API_HOST,
+    webUrl: env.WEB_URL,
   },
   db: {
     url: env.DATABASE_URL,
