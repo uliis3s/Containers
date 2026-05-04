@@ -9,17 +9,75 @@ datasource db {
 
 // ─── Enums ────────────────────────────────────────────────────────────────────
 
-enum CategoriaCaja      { SECA MARITIMA }
-enum TipoSello          { PRIMARIO SECUNDARIO }
-enum TipoOperacion      { DROP PICKUP SWAP }
-enum CanalOrigen        { EMAIL WHATSAPP TELEFONO PORTAL }
-enum StatusSolicitud    { PENDIENTE APROBADA RECHAZADA }
-enum Ubicacion          { PLANTA YARDA_EXTERNA }
-enum StatusMovimiento   { AUTORIZADO EN_PLANTA CARGANDO LISTO DESPACHADO }
-enum MomentoInspeccion  { ENTRADA SALIDA }
-enum ResultadoInspeccion { OK REVISAR RECHAZADO }
-enum TipoAlerta         { DIAS_48 DIAS_72 MEDICION_FALLIDA SELLO_NO_COINCIDE }
-enum Rol                { LOGISTICA SEGURIDAD ENVIOS VENTAS TRANSPORTISTA BROKER ADMIN }
+enum CategoriaCaja {
+  SECA
+  MARITIMA
+}
+
+enum TipoSello {
+  PRIMARIO
+  SECUNDARIO
+}
+
+enum TipoOperacion {
+  DROP
+  PICKUP
+  SWAP
+}
+
+enum CanalOrigen {
+  EMAIL
+  WHATSAPP
+  TELEFONO
+  PORTAL
+}
+
+enum StatusSolicitud {
+  PENDIENTE
+  APROBADA
+  RECHAZADA
+}
+
+enum Ubicacion {
+  PLANTA
+  YARDA_EXTERNA
+}
+
+enum StatusMovimiento {
+  AUTORIZADO
+  EN_PLANTA
+  CARGANDO
+  LISTO
+  DESPACHADO
+}
+
+enum MomentoInspeccion {
+  ENTRADA
+  SALIDA
+}
+
+enum ResultadoInspeccion {
+  OK
+  REVISAR
+  RECHAZADO
+}
+
+enum TipoAlerta {
+  DIAS_48
+  DIAS_72
+  MEDICION_FALLIDA
+  SELLO_NO_COINCIDE
+}
+
+enum Rol {
+  LOGISTICA
+  SEGURIDAD
+  ENVIOS
+  VENTAS
+  TRANSPORTISTA
+  BROKER
+  ADMIN
+}
 
 enum CategoriaFoto {
   CONDUCTOR
