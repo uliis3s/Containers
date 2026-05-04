@@ -1,16 +1,16 @@
 // Shared domain types that mirror the Prisma-generated schema.
-// Once `prisma generate` has run, replace the Rol definition below with:
+// Once `prisma generate` has run, replace the Rol block below with:
 //   export { Rol } from '@prisma/client'
-// and update the interface fields to use the generated types directly.
+// Values must match the Rol enum in packages/database/prisma/schema.prisma exactly.
 
 export const Rol = {
-  ADMIN: 'ADMIN',
-  LOGISTICA: 'LOGISTICA',
-  TRANSPORTISTA: 'TRANSPORTISTA',
-  BROKER: 'BROKER',
-  CASETA: 'CASETA',
-  VENTAS_USA: 'VENTAS_USA',
-  ENVIOS: 'ENVIOS',
+  ADMIN:          'ADMIN',
+  LOGISTICA:      'LOGISTICA',
+  SEGURIDAD:      'SEGURIDAD',
+  ENVIOS:         'ENVIOS',
+  VENTAS:         'VENTAS',
+  TRANSPORTISTA:  'TRANSPORTISTA',
+  BROKER:         'BROKER',
 } as const
 export type Rol = (typeof Rol)[keyof typeof Rol]
 
