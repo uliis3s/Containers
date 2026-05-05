@@ -29,3 +29,7 @@ pnpm-debug.log*
 # ─── OS ───────────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+
+# Web package
+packages/web/.next/
+packages/web/.env.local
