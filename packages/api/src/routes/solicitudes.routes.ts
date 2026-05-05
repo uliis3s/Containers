@@ -72,7 +72,8 @@ export default async function solicitudesRoutes(app: FastifyInstance) {
       const user = request.user
       const body = request.body
 
-      if (![Rol.TRANSPORTISTA, Rol.LOGISTICA, Rol.ADMIN].includes(user.rol as Rol)) {
+      const allowedCreators: Rol[] = [Rol.TRANSPORTISTA, Rol.LOGISTICA, Rol.ADMIN]
+      if (!allowedCreators.includes(user.rol as Rol)) {
         throw new ForbiddenError('Access denied')
       }
 
@@ -172,7 +173,7 @@ export default async function solicitudesRoutes(app: FastifyInstance) {
       })
 
       const data = await Promise.all(
-        solicitudes.map((s) => toPublicSolicitud(s as unknown as DbSolicitud)),
+        solicitudes.map((s: any) => toPublicSolicitud(s as unknown as DbSolicitud)),
       )
       return reply.send({ data })
     },
@@ -212,7 +213,7 @@ export default async function solicitudesRoutes(app: FastifyInstance) {
       if (solicitud.status !== 'PENDIENTE')
         throw new ValidationError('Only PENDIENTE solicitudes can be approved')
 
-      const updated = await prisma.$transaction(async (tx) => {
+      const updated = await prisma.$transaction(async (tx: any) => {
         const sol = await tx.solicitud.update({
           where: { id: solicitud.id },
           data: {

@@ -3,6 +3,7 @@ import { authenticate } from '../middleware/authenticate'
 import { authorize } from '../middleware/authorize'
 import { Rol } from '../utils/types'
 import { prisma } from '../db'
+import { ForbiddenError } from '../utils/errors'
 
 export default async function catalogosRoutes(app: FastifyInstance) {
   app.addHook('preHandler', authenticate)
@@ -84,14 +85,14 @@ export default async function catalogosRoutes(app: FastifyInstance) {
     })
   })
 
-  app.get(
+  app.get<{ Params: { id: string } }>(
     '/transportistas/:id/conductores',
-    async (request: { params: { id: string }; user: { rol: string; entidadId: string | null } }, reply) => {
-      const { id } = (request as any).params
-      const user = (request as any).user
+    async (request, reply) => {
+      const { id } = request.params
+      const user = request.user
 
       if (user.rol === Rol.TRANSPORTISTA && user.entidadId !== id) {
-        return reply.status(403).send({ error: { code: 'FORBIDDEN', message: 'Access denied' } })
+        throw new ForbiddenError('Access denied')
       }
 
       const conductores = await prisma.conductor.findMany({
@@ -111,14 +112,14 @@ export default async function catalogosRoutes(app: FastifyInstance) {
     },
   )
 
-  app.get(
+  app.get<{ Params: { id: string } }>(
     '/transportistas/:id/tractores',
-    async (request: any, reply) => {
+    async (request, reply) => {
       const { id } = request.params
       const user = request.user
 
       if (user.rol === Rol.TRANSPORTISTA && user.entidadId !== id) {
-        return reply.status(403).send({ error: { code: 'FORBIDDEN', message: 'Access denied' } })
+        throw new ForbiddenError('Access denied')
       }
 
       const tractores = await prisma.tractor.findMany({
@@ -135,14 +136,14 @@ export default async function catalogosRoutes(app: FastifyInstance) {
     },
   )
 
-  app.get(
+  app.get<{ Params: { id: string } }>(
     '/transportistas/:id/cajas',
-    async (request: any, reply) => {
+    async (request, reply) => {
       const { id } = request.params
       const user = request.user
 
       if (user.rol === Rol.TRANSPORTISTA && user.entidadId !== id) {
-        return reply.status(403).send({ error: { code: 'FORBIDDEN', message: 'Access denied' } })
+        throw new ForbiddenError('Access denied')
       }
 
       const cajas = await prisma.caja.findMany({
