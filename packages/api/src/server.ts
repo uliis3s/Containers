@@ -3,6 +3,7 @@ import rateLimit from '@fastify/rate-limit'
 import { config } from './config'
 import corsPlugin from './plugins/cors'
 import { AppError } from './utils/errors'
+import registerRoutes from './routes'
 
 export async function buildApp(): Promise<FastifyInstance> {
   const app = Fastify({
@@ -71,8 +72,7 @@ export async function buildApp(): Promise<FastifyInstance> {
     return reply.status(500).send(body)
   })
 
-  // Routes are registered here per-module once route files are ready:
-  // await app.register(import('./routes'), { prefix: '/api/v1' })
+  await app.register(registerRoutes, { prefix: '/api/v1' })
 
   return app
 }

@@ -54,14 +54,17 @@ export interface DbTractor {
   placas: string
 }
 
+export interface DbTipoCaja {
+  codigo: string
+  descripcion: string
+  categoria: string
+}
+
 export interface DbCaja {
   id: string
-  numero: string
-  tipo: string
-  isoCode: string | null
-  longitud: number | null
-  ancho: number | null
-  alto: number | null
+  containerNumero: string
+  placasContenedor: string | null
+  tipoCaja: DbTipoCaja
 }
 
 export interface DbSello {

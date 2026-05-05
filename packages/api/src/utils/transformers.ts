@@ -7,6 +7,7 @@ import type {
   DbSolicitud,
   DbTractor,
   DbUsuario,
+  DbTipoCaja,
 } from './types'
 
 // ── Sync transformers (no photo URLs) ─────────────────────────────────────────
@@ -23,12 +24,13 @@ export function toPublicTractor(t: DbTractor) {
 export function toPublicCaja(c: DbCaja) {
   return {
     id: c.id,
-    numero: c.numero,
-    tipo: c.tipo,
-    isoCode: c.isoCode,
-    longitud: c.longitud,
-    ancho: c.ancho,
-    alto: c.alto,
+    containerNumero: c.containerNumero,
+    placasContenedor: c.placasContenedor,
+    tipoCaja: {
+      codigo: c.tipoCaja.codigo,
+      descripcion: c.tipoCaja.descripcion,
+      categoria: c.tipoCaja.categoria,
+    },
   }
 }
 
